@@ -1,0 +1,20 @@
+<div class="task-list">
+    <h3>
+        <ng-content></ng-content>
+    </h3>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr *ngFor="let item of list">
+                <td>
+                    <span>{{ item.nome }}</span>
+                    <span class="task-list__finalizado" *ngIf="exibeFinalizado(item)"></span>
+                    <span class="task-list__iniciado" *ngIf="exibeIniciado(item)"></span>
+                    <span class="task-list__retroceder" *ngIf="exibeRetroceder(item)"></span>
+                    <!-- <span class="task-list__retroceder"></span> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
