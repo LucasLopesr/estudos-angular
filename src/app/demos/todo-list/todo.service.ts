@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 
 import { Task } from './task';
 import { StoreService } from './store.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class TasksService {
@@ -15,8 +16,42 @@ export class TasksService {
     tap sendo utilizando para atribuir os valores para a store
   */
   getTodoList$: Observable<Task[]> = this.http
-    .get<Task[]>('http://localhost:3000/todolist')
+    .get<Task[]>(environment.apiEndPoint)
     .pipe(tap(next => this.store.set('todolist', next)));
+
+  changeTask(taskChanged: Task) {
+      this.http.put(`${environment.apiEndPoint}/${taskChanged.id}`, taskChanged).subscribe(() => {
+        const value = this.store.valor.todolist;
+        const todolist = value.map((task: Task) => {
+          if (taskChanged.id === task.id) {
+            return {... task, ... taskChanged};
+          } else {
+            return task;
+          }
+        });
+      this.store.set('todolist', todolist);
+    });
+  }
+  
+  newTask(nome: String) {
+    console.log(name);
+    
+    this.http.post(environment.apiEndPoint, {id:null , nome, finalizado: false, iniciado: false }).subscribe((newTask:Task) => {
+      const value = this.store.valor.todolist;
+      value.push(newTask);
+    this.store.set('todolist', value);
+    });
+  }
+
+
+  /* 
+      {
+      "id": 8,
+      "nome": "Correr no parque",
+      "finalizado": false,
+      "iniciado": false
+    }
+  */
 
   /* getToDoList(): Observable<Task[]> {
     return this.http

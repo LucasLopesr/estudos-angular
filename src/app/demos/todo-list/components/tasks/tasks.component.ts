@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { StoreService } from '../../store.service';
 import { Task } from '../../task';
+import { TasksService } from '../../todo.service';
 
 @Component({
   selector: 'tasks',
@@ -12,11 +13,17 @@ export class TasksComponent implements OnInit {
 
   todolist$: Observable<Task[]>
   
-  constructor(private readonly store: StoreService) {}
+  constructor(private readonly tasksService: TasksService,private readonly store: StoreService) {}
 
   ngOnInit() {
     this.todolist$ = this.store.getTodoList().pipe(map(
       todolist =>  todolist.filter(task => !task.iniciado && !task.finalizado)  
     ));    
+  }
+
+  onClicked(task: any) {
+    console.log("onClicked");
+    
+    this.tasksService.changeTask(task);
   }
 }

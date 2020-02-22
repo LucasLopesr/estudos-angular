@@ -1,9 +1,20 @@
 <div class="container main-container">
-
-    <div class="row text-center">
-        <tasks class="col-md-4"></tasks>
-        <tasks-iniciadas class="col-md-4"></tasks-iniciadas>
-        <tasks-finalizadas class="col-md-4"></tasks-finalizadas>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Task name</span>
+      </div>
+      <input type="text" class="form-control" formControlName="nome" aria-label="Task name"
+        aria-describedby="inputGroup-sizing-sm" />
+      <div class="ml-2">
+        <button type="submit" class="btn btn-sm btn-color">Add</button>
+      </div>
     </div>
+  </form>
 
+  <div class="row text-center">
+    <tasks class="col-md-4"></tasks>
+    <tasks-iniciadas class="col-md-4"></tasks-iniciadas>
+    <tasks-finalizadas class="col-md-4"></tasks-finalizadas>
+  </div>
 </div>

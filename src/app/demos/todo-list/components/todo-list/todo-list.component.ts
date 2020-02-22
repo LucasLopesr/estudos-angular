@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from "../../task";
+import { TaskService } from '../../task.service';
 
 @Component({
   selector: 'todo-list',
@@ -14,6 +15,12 @@ export class ToDoListComponent {
   @Output()
   clicked = new EventEmitter<any>();
 
+  constructor(public readonly taskService: TaskService) {
+    taskService.evento.subscribe(task => {
+      this.clicked.emit(task); 
+    });
+  }
+
   exibeFinalizado(item: Task) {
     return !item.finalizado && item.iniciado;
   }
@@ -23,7 +30,11 @@ export class ToDoListComponent {
   }
 
   exibeRetroceder(item: Task) {
-    return (item.finalizado && !item.iniciado) || (!item.finalizado && item.iniciado);
+    return item.finalizado && !item.iniciado;
+  }
+
+  exibeCancelar(item: Task) {
+    return  !item.finalizado && item.iniciado;
   }
 
 }
