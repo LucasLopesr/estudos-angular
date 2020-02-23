@@ -22,8 +22,6 @@ export class TasksComponent implements OnInit {
   }
 
   onClicked(task: any) {
-    console.log("onClicked");
-    
     this.tasksService.changeTask(task);
   }
 }

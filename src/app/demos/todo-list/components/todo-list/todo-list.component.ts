@@ -37,4 +37,8 @@ export class ToDoListComponent {
     return  !item.finalizado && item.iniciado;
   }
 
+  delete(item: Task) {
+    this.taskService.delete(item);
+  }
+
 }

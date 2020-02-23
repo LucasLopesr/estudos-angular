@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Task } from './task';
 import { Subject } from 'rxjs';
+import { TasksService } from './todo.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class TaskService {
 
   get evento() { return this.subject$.asObservable(); }
 
-  constructor() { }
+  constructor(private readonly tasksService: TasksService) { }
 
   finalizar(task: Task) {
     task.finalizado = true;
@@ -35,6 +36,10 @@ export class TaskService {
     task.finalizado = false;
     task.iniciado = true;
     this.next(task);
+  }
+
+  delete(item: Task) {
+    this.tasksService.delete(item);
   }
 
   private next(task: Task) {

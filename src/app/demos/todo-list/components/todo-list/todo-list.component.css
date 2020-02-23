@@ -42,6 +42,13 @@
     background-size: 20px 20px;
 }
 
+.task-list__delete {
+    height: 20px;
+    position: absolute;
+    right: 20rem;
+    cursor: pointer;
+}
+
 .task-list li {
     list-style-type: none !important;
     position: relative;
@@ -59,4 +66,12 @@
 
 .task-list li span {
     color: #807d82;
+}
+
+
+.icon-color {
+    color:  #812eb4;
+}
+.icon-color svg {
+    fill:  #812eb4;
 }

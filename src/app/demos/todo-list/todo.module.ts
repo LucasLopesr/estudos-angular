@@ -10,13 +10,15 @@ import { ToDoListComponent } from './components/todo-list/todo-list.component';
 import { TodoComponent } from './todo.component';
 import { StoreService } from './store.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [
     TasksService,

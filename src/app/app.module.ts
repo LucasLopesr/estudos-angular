@@ -25,6 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BarModule } from './demos/bar-di-zones/bar.module';
 import { BarServices } from './demos/bar-di-zones/bar.service';
 import { TodoModule } from './demos/todo-list/todo.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
 
 export const BAR_PROVIDERS: Provider[] = [
   BarServices
@@ -53,7 +55,9 @@ export const BAR_PROVIDERS: Provider[] = [
       unidadeId: 1000,
       unidadeToken: 'eca938c99a0e9ff91029dc'
     }),
-    TodoModule
+    TodoModule,
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   providers: [
     AuthGuard,

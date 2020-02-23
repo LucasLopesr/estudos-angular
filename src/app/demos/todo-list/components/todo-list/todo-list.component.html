@@ -7,11 +7,21 @@
         <tbody>
             <tr *ngFor="let item of list">
                 <td>
+
                     <span>{{ item.nome }}</span>
-                    <span class="task-list__finalizado" *ngIf="exibeFinalizado(item)" (click)="taskService.finalizar(item)"></span>
-                    <span class="task-list__iniciado" *ngIf="exibeIniciado(item)" (click)="taskService.iniciar(item)"></span>
-                    <span class="task-list__retroceder" *ngIf="exibeCancelar(item)" (click)="taskService.cancelar(item)"></span>
-                    <span class="task-list__retroceder" *ngIf="exibeRetroceder(item)" (click)="taskService.retroceder(item)"></span>
+                    <span class="task-list__finalizado " *ngIf="exibeFinalizado(item)"
+                        (click)="taskService.finalizar(item)"></span>
+                    <span class="task-list__iniciado" *ngIf="exibeIniciado(item)"
+                        (click)="taskService.iniciar(item)"></span>
+                    <span class="task-list__retroceder" *ngIf="exibeCancelar(item)"
+                        (click)="taskService.cancelar(item)"></span>
+                    <span class="task-list__retroceder" *ngIf="exibeRetroceder(item)"
+                        (click)="taskService.retroceder(item)"></span>
+                    <span class="task-list__delete" (click)="delete(item)">
+                        <mat-icon class="icon-color" (click)="delete(item)" aria-hidden="false"
+                            aria-label="Example home icon">delete</mat-icon>
+                    </span>
+
                 </td>
             </tr>
         </tbody>

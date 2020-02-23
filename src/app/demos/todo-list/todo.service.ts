@@ -34,12 +34,24 @@ export class TasksService {
   }
   
   newTask(nome: String) {
-    console.log(name);
-    
     this.http.post(environment.apiEndPoint, {id:null , nome, finalizado: false, iniciado: false }).subscribe((newTask:Task) => {
       const value = this.store.valor.todolist;
       value.push(newTask);
     this.store.set('todolist', value);
+    });
+  }
+
+  delete(task: Task) {
+    console.log(task);
+    
+    this.http.delete(`${environment.apiEndPoint}/${task.id}`).subscribe(() => {
+      const value = this.store.valor.todolist;
+      const index = value.indexOf(task);
+      if (index > -1) {
+        value.splice(index, 1);
+        this.store.set('todolist', value);
+      }
+      
     });
   }
 
